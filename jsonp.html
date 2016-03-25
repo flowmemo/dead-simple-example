@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>JSONP Github demo</title>
+</head>
+<body>
+  <button>Get</button>
+  <p id='result'></p>
+</body>
+<script>
+'use strict'
+const url = 'https://api.github.com/?callback=getJSONP'
+var button = document.getElementsByTagName('button')[0]
+button.addEventListener('click',addScript)
+var scriptElement = document.createElement('script')
+scriptElement.setAttribute('src', url)
+function addScript () {
+  document.getElementsByTagName('body')[0].appendChild(scriptElement)    
+}
+function getJSONP(data) {
+  console.log(data)
+  document.getElementById('result').textContent = JSON.stringify(data)
+}
+</script>
+</html>
